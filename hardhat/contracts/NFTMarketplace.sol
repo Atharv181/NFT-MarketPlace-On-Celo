@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract Marketplace {
+contract NFTMarketplace {
 
     //Events
     event ListingCreated(
@@ -95,9 +95,10 @@ contract Marketplace {
         emit ListingCreated(nftAddress, tokenId, price, msg.sender);
     }
 
-    function cancelListing(address nftAddress, uint256 tokenId) external 
-        isNFTOwner(address nftAddress, uint256 tokenId)
-        isListed(address nftAddress, uint256 tokenId) 
+    function cancelListing(address nftAddress, uint256 tokenId) 
+        external 
+        isNFTOwner(nftAddress, tokenId)
+        isListed(nftAddress, tokenId) 
     {
 
         delete listings[nftAddress][tokenId];
