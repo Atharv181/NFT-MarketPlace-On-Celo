@@ -25,6 +25,13 @@ contract Marketplace {
         address seller
     );
 
+    event ListingPurchased(
+        address nftAddress,
+        uint256 tokenId,
+        address seller,
+        address buyer
+    );
+
 
     //Structs
     struct Listing {
@@ -120,7 +127,18 @@ contract Marketplace {
         isListed(nftAddress,tokenId)
     {
         require(msg.value == listings[nftAddress][tokenId].price, "Incorrect Amount");
-        
+
+        //load the listing in a local copy
+        Listing memory listing = listings[nftAddress][tokenId];
+
+        delete listings[nftAddress][tokenId];
+
+        IERC721(nftAddress).safeTransferFrom(listing.seller, msg.sender, tokenId);
+
+        (bool sent, ) = payable(listing.seller).call{value:msg.value}("Thank You For NFT");
+        require(sent,"Failed to transfer eth");
+
+        emit ListingPurchased(nftAddress, tokenId ,listing.seller, msg.sender);
     }
 
 }
