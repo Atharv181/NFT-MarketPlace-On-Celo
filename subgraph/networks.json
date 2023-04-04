@@ -1,0 +1,8 @@
+{
+  "celo-alfajores": {
+    "NFTMarketplace": {
+      "address": "0x614e59F0BC4BA8501858b55993AB2A91a1e9015d",
+      "startBlock": 0
+    }
+  }
+}
