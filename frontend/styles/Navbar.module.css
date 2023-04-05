@@ -1,0 +1,24 @@
+.body {
+  margin: 0%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  column-gap: 2em;
+  align-items: center;
+  background-color: antiquewhite;
+  padding: 1em 0 1em 0;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  font-weight: bold;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+    padding: 3px;
+}
